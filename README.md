@@ -151,7 +151,7 @@ sudo apt-get install libpng-dev
 ## Run sobfu
 Download [sobfu](<https://github.com/dgrzech/sobfu>) and some useful [instructions](<https://github.com/dgrzech/sobfu/issues/3>)
 
-Modify [this line](<https://github.com/dgrzech/sobfu/blob/master/CMakeLists.txt#L41>) in the CmakeList according to the GPU in your laptop. The GPU I got is GeForce GTX 960M, so this line should be `-gencode;arch=compute_50,code=sm_50`. Some settings for GPU can be found on the wiki of [ccminer](<https://github.com/tpruvot/ccminer/wiki/Compatibility>). 
+Modify [this line](<https://github.com/dgrzech/sobfu/blob/master/CMakeLists.txt#L41>) in the CMakeList according to the GPU in your laptop. The GPU I got is GeForce GTX 960M, so this line should be `-gencode;arch=compute_50,code=sm_50`. Some settings for GPU can be found on the wiki of [ccminer](<https://github.com/tpruvot/ccminer/wiki/Compatibility>). 
 
 Run the code
 ```shell
