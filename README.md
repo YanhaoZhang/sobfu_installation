@@ -1,15 +1,12 @@
 # sobfu_installation
-This is a draft on what I did for installing the dependecies for sobfu. I haven't successfully run sobfu, so there must be something wrong
+This is the dependencies I installed for running code [sobfu](<https://github.com/dgrzech/sobfu>). Briefly, the dependencies are: **CUDA 9.0**, **PCL-1.8.1**,  **Eigen-3.3.6**, **Boosct-1.65.1**, **OpenCV-3.4.3**, and **VTK-7.1.1**. 
 
-## Summary
+This will also be helpful for someone who want to install NVIDIA driver and CUDA on a laptop with multiple GPU.
 
-For short, **CUDA 9.0**, **PCL-1.8.1**,  **Eigen-3.3.6**, **Boost-1.65.1**, **OpenCV-3.4.3**, and **VTK-7.1.1**. 
-
+## Dependencies
 ### 1. update gcc
-
 cuda 9.0 is only supported by gcc 6. The gcc should be changed firstly.
-
-```
+```shell
 sudo apt-get update && \
 sudo apt-get install build-essential software-properties-common -y && \
 sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y && \
@@ -20,10 +17,8 @@ gcc -v
 ```
 
 ### 2. install nvidia driver and cuda 9.0
-
 Do not change anything, just follow this instruction [cuda_installation_on_ubuntu_18.04](<https://gist.github.com/Mahedi-61/2a2f1579d4271717d421065168ce6a73>). It also works for Ubuntu 16.04.
-
-```
+```shell
 # first get the PPA repository driver
 sudo add-apt-repository ppa:graphics-drivers/ppa
 
@@ -61,16 +56,13 @@ nvcc -V
 
 
 ### 3. install cmake
-
 Here I chose the latest version (3.15.0). Download [here](<https://cmake.org/download/>) and follow the [cmake github instruction](<https://github.com/Kitware/CMake>). 
-
-```
+```shell
 ./bootstrap && make && sudo make install
 ```
 
 ### 4. install opengl
-
-```
+```shell
 sudo apt-get install libgl1-mesa-dev
 sudo apt-get install libglu1-mesa-dev
 sudo apt-get install freeglut3-dev
@@ -80,7 +72,7 @@ sudo apt-get install freeglut3-dev
 
 Download [boost 1.65.1](<https://www.boost.org/users/history/version_1_65_1.html>).
 
-```
+```shell
 sudo ./bootstrap.sh
 sudo ./b2 install
 sudo ldconfig
@@ -89,8 +81,7 @@ echo 'export CPLUS_INCLUDE_PATH=/usr/local/lib/boost/include' >> ~/.bashrc
 ```
 
 ### 6. install Eigen 3.3.6
-
-```
+```shell
 mkdir build
 cd build
 cmake ..
@@ -99,8 +90,7 @@ sudo make install
 ```
 
 ### 7. install vtk 7.1.1
-
-```
+```shell
 mkdir build
 cd build
 cmake ..
@@ -109,10 +99,8 @@ sudo make install
 ```
 
 ### 8. install pcl 1.8.1
-
 download pcl from [here](<https://github.com/PointCloudLibrary/pcl/releases/tag/pcl-1.8.1>). 
-
-```
+```shell
 sudo apt-get update  
 sudo apt-get install git build-essential linux-libc-dev
 # sudo apt-get install cmake cmake-gui
@@ -132,7 +120,6 @@ sudo apt-get install mono-complete
 sudo apt-get install openjdk-8-jdk openjdk-8-jre
 sudo apt-get install libflann-dev
 
-
 mkdir build 
 cd build
 cmake -DCMAKE_BUILD_TYPE=Release \ -DBUILD_GPU=ON -DBUILD_apps=ON ..
@@ -141,10 +128,8 @@ sudo make install
 ```
 
 ### 9. install OpenCV 3.4.3
-
 According to [opencv tutorial_linux_install](<https://docs.opencv.org/3.4.3/d7/d9f/tutorial_linux_install.html>). 
-
-```
+```shell
 sudo apt-get install build-essential
 sudo apt-get install cmake git libgtk2.0-dev pkg-config libavcodec-dev libavformat-dev libswscale-dev
 sudo apt-get install python-dev python-numpy libtbb2 libtbb-dev libjpeg-dev libpng-dev libtiff-dev libjasper-dev libdc1394-22-dev
@@ -155,8 +140,7 @@ sudo make install
 ```
 
 ### 10. Some other things
-
-```
+```shell
 sudo apt-get update
 sudo apt-get install libopenni2-dev
 sudo apt-get install libopenni-dev
@@ -167,4 +151,9 @@ sudo apt-get install libpng-dev
 ## Run sobfu
 Download [sobfu](<https://github.com/dgrzech/sobfu>) and some useful [instructions](<https://github.com/dgrzech/sobfu/issues/3>)
 
+Modify [this line](<https://github.com/dgrzech/sobfu/blob/master/CMakeLists.txt#L41>) in the CmakeList according to the GPU in your laptop. The GPU I got is GeForce GTX 960M, so this line should be `-gencode;arch=compute_50,code=sm_50`. Some settings for GPU can be found on the wiki of [ccminer](<https://github.com/tpruvot/ccminer/wiki/Compatibility>). 
+
+Run the code
+```shell
 ./build/bin/app /path/to/data /path/to/params <--enable-viz> <--enable-log> <--verbose>
+```
