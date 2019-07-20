@@ -1,5 +1,5 @@
 # sobfu_installation
-This is the dependencies I installed for running code [sobfu](<https://github.com/dgrzech/sobfu>). Briefly, the dependencies are: **CUDA 9.0**, **PCL-1.8.1**,  **Eigen-3.3.6**, **Boosct-1.65.1**, **OpenCV-3.4.3**, and **VTK-7.1.1**. 
+This is the dependencies I installed for running project [sobfu](<https://github.com/dgrzech/sobfu>). Briefly, the dependencies are: **CUDA 9.0**, **PCL-1.8.1**,  **Eigen-3.3.6**, **Boosct-1.65.1**, **OpenCV-3.4.3**, and **VTK-7.1.1**. 
 
 This will also be helpful for someone who want to install NVIDIA driver and CUDA on a laptop with multiple GPU.
 
